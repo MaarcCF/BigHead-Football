@@ -12,6 +12,7 @@ var loadState = {
 
         //cargamos los sprites necesarios, jugador, background, el boton mutear, etc
 		game.load.spritesheet('player', 'assets/player2.png', 20, 20);
+        game.load.spritesheet('ball', 'assets/pelota.png', 20, 20);
 		game.load.image('background', 'assets/campoFutbol.jpg');
 		game.load.spritesheet('mute', 'assets/muteButton.png', 28, 22);
         game.load.image('wallV', 'assets/wallVertical.png');

@@ -37,12 +37,21 @@ var playState = {
         //insercion de jugadores en una array para poder cambiar el jugador
         this.equip1 = [this.player1, this.player2 ,this.player3];
         
+        this.ball = game.add.sprite(game.world.centerX, game.world.centerY, 'ball');
+		this.game.physics.arcade.enable(this.ball); 
+		this.ball.anchor.setTo(0.5, 0.5);
+        this.ball.body.velocity.setTo(200, 200);
+		this.ball.body.gravity.y = 0;	
+        this.ball.body.collideWorldBounds = true;
+        this.ball.body.bounce.setTo(1, 1);
+        
         //creacion de jugadores
         this.player4 = game.add.sprite(game.world.centerX + 200, game.world.centerY, 'player');
 		this.game.physics.arcade.enable(this.player4); 
 		this.player4.anchor.setTo(0.5, 0.5);
 		this.player4.body.gravity.y = 0;	
         this.player4.body.collideWorldBounds = true;
+        
         
         this.player5 = game.add.sprite(game.world.centerX + 300, game.world.centerY + 100, 'player');
 		this.game.physics.arcade.enable(this.player5); 
@@ -58,60 +67,83 @@ var playState = {
         //insercion de jugadores en una array para poder cambiar el jugador
         this.equip2 = [this.player4, this.player5, this.player6];
         
-       
-	},
-
-	update: function() {
-        //implementar fisicas de los jugadores
-        this.game.physics.arcade.collide(this.player1, this.layer);
-        this.game.physics.arcade.collide(this.player2, this.layer);
-        this.game.physics.arcade.collide(this.player3, this.layer);
-        this.game.physics.arcade.collide(this.player4, this.layer);
-        this.game.physics.arcade.collide(this.player5, this.layer);
-        this.game.physics.arcade.collide(this.player6, this.layer);
-        
         var i=0;
         var j=0;
         this.contadorA=i;
         this.contadorB=j;
         this.equip1[this.contadorA];
         this.equip2[this.contadorB];
-        
+        this.tiempo=500;
+       
+	},
+
+	update: function() {
+        //implementar fisicas de los jugadores
+        game.physics.arcade.collide(this.player1, this.layer);
+        game.physics.arcade.collide(this.player2, this.layer);
+        game.physics.arcade.collide(this.player3, this.layer);
+        game.physics.arcade.collide(this.player4, this.layer);
+        game.physics.arcade.collide(this.player5, this.layer);
+        game.physics.arcade.collide(this.player1, this.layer);
+        game.physics.arcade.collide(this.equip1, this.equip2);
+        game.physics.arcade.collide(this.equip1, this.equip1);
+        game.physics.arcade.collide(this.equip2, this.equip2);
+        game.physics.arcade.collide(this.equip1, this.ball);
+        game.physics.arcade.collide(this.equip2, this.ball);
+        game.physics.arcade.collide(this.ball, this.layer);
         //movimiento de los jugadores
+        this.equip1[this.contadorA].body.velocity.x=0;
+        this.equip1[this.contadorA].body.velocity.y=0;
+        this.equip2[this.contadorB].body.velocity.x=0;
+        this.equip2[this.contadorB].body.velocity.y=0;
+        //this.ball.body.velocity.y = 0;
+        //this.ball.body.velocity.x = 0;
+       
         if (this.cursor.left.isDown)
         {
-            this.equip1[this.contadorA].x -= 2;
+            this.equip1[this.contadorA].body.velocity.x -= 100;
         } else if (this.cursor.right.isDown) {
-            this.equip1[this.contadorA].x += 2;
+            this.equip1[this.contadorA].body.velocity.x += 100;
         }
         if (this.cursor.up.isDown)
         {
-            this.equip1[this.contadorA].y -= 2;
+            this.equip1[this.contadorA].body.velocity.y -= 100;
         } else if (this.cursor.down.isDown) {
-            this.equip1[this.contadorA].y += 2;
+            this.equip1[this.contadorA].body.velocity.y += 100;
         }    
         if(this.cambiarEquip1.isDown) {
-            this.contadorA++;
-        } else if(this.equip1[this.contadorA] > 2) {
-            this.equip1[this.contadorA] = 0;
+            if(game.time.now > this.tiempo) {
+                this.tiempo=game.time.now+500;
+                this.contadorA++;
+            }
+        } 
+        
+        if(this.contadorA > 2) {
+            this.contadorA = 0;
+            console.log(this.contadorA);
         }
         
         if (this.wasd.left.isDown)
         {
-            this.equip2[this.contadorB].x -= 2;
+            this.equip2[this.contadorB].body.velocity.x -= 100;
         } else if (this.wasd.right.isDown) {
-            this.equip2[this.contadorB].x += 2;
+            this.equip2[this.contadorB].body.velocity.x += 100;
         }
         if (this.wasd.up.isDown)
         {
-            this.equip2[this.contadorB].y -= 2;
+            this.equip2[this.contadorB].body.velocity.y -= 100;
         } else if (this.wasd.down.isDown) {
-            this.equip2[this.contadorB].y += 2;
+            this.equip2[this.contadorB].body.velocity.y += 100;
         }    
         if(this.wasd.change.isDown) {
-            this.contadorB++;
-        } else if(this.equip2[this.contadorB] > 2) {
-            this.equip2[this.contadorB] = 0;
+            if(game.time.now > this.tiempo) {
+                this.tiempo=game.time.now+500;
+                this.contadorB++;
+            }
+        } 
+        
+        if(this.contadorB > 2) {
+            this.contadorB = 0;
         }
       },
 
@@ -125,6 +157,6 @@ var playState = {
         this.map.addTilesetImage('tileset');
         this.layer = this.map.createLayer('Tile Layer 1');
         this.layer.resizeWorld();
-        this.map.setCollision(2);
+        this.map.setCollisionBetween(1, 10);
 	}
 };
