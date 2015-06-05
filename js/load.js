@@ -11,7 +11,8 @@ var loadState = {
 		game.load.setPreloadSprite(progressBar);
 
         //cargamos los sprites necesarios, jugador, background, el boton mutear, etc
-		game.load.spritesheet('player', 'assets/player2.png', 20, 20);
+		game.load.spritesheet('player1', 'assets/player1.png', 25, 36);
+        game.load.spritesheet('player2', 'assets/player2.png', 25, 36);
         game.load.spritesheet('ball', 'assets/pelota.png', 20, 20);
 		game.load.image('background', 'assets/campoFutbol.jpg');
 		game.load.spritesheet('mute', 'assets/muteButton.png', 28, 22);

@@ -17,53 +17,76 @@ var playState = {
 
 		this.createWorld();
         //creacion de jugadores
-		this.player1 = game.add.sprite(game.world.centerX - 200, game.world.centerY, 'player');
+		this.player1 = game.add.sprite(game.world.centerX - 200, game.world.centerY, 'player2');
 		this.game.physics.arcade.enable(this.player1); 
 		this.player1.anchor.setTo(0.5, 0.5);
 		this.player1.body.gravity.y = 0;	
         this.player1.body.collideWorldBounds = true;
+        this.player1.animations.add('right', [1, 0, 2], 8, true);
+        this.player1.animations.add('left', [4, 3, 5], 8, true);
+        this.player1.animations.add('up', [7, 6, 8], 8, true);
+        this.player1.animations.add('down', [10, 9, 11], 8, true);
         
-        this.player2 = game.add.sprite(game.world.centerX - 300, game.world.centerY - 100, 'player');
+        this.player2 = game.add.sprite(game.world.centerX - 300, game.world.centerY - 100, 'player2');
 		this.game.physics.arcade.enable(this.player2); 
 		this.player2.anchor.setTo(0.5, 0.5);
 		this.player2.body.gravity.y = 0;	
         this.player2.body.collideWorldBounds = true;
+        this.player2.animations.add('right', [1, 0, 2], 8, true);
+        this.player2.animations.add('left', [4, 3, 5], 8, true);
+        this.player2.animations.add('up', [7, 6, 8], 8, true);
+        this.player2.animations.add('down', [10, 9, 11], 8, true);
         
-        this.player3 = game.add.sprite(game.world.centerX - 300, game.world.centerY + 100, 'player');
+        this.player3 = game.add.sprite(game.world.centerX - 300, game.world.centerY + 100, 'player2');
 		this.game.physics.arcade.enable(this.player3); 
 		this.player3.anchor.setTo(0.5, 0.5);
 		this.player3.body.gravity.y = 0;	
         this.player3.body.collideWorldBounds = true;
+        this.player3.animations.add('right', [1, 0, 2], 8, true);
+        this.player3.animations.add('left', [4, 3, 5], 8, true);
+        this.player3.animations.add('up', [7, 6, 8], 8, true);
+        this.player3.animations.add('down', [10, 9, 11], 8, true);
+        
         //insercion de jugadores en una array para poder cambiar el jugador
         this.equip1 = [this.player1, this.player2 ,this.player3];
         
         this.ball = game.add.sprite(game.world.centerX, game.world.centerY, 'ball');
 		this.game.physics.arcade.enable(this.ball); 
 		this.ball.anchor.setTo(0.5, 0.5);
-        this.ball.body.velocity.setTo(200, 200);
 		this.ball.body.gravity.y = 0;	
         this.ball.body.collideWorldBounds = true;
         this.ball.body.bounce.setTo(1, 1);
         
         //creacion de jugadores
-        this.player4 = game.add.sprite(game.world.centerX + 200, game.world.centerY, 'player');
+        this.player4 = game.add.sprite(game.world.centerX + 200, game.world.centerY, 'player1');
 		this.game.physics.arcade.enable(this.player4); 
 		this.player4.anchor.setTo(0.5, 0.5);
 		this.player4.body.gravity.y = 0;	
         this.player4.body.collideWorldBounds = true;
+        this.player4.animations.add('right', [1, 0, 2], 8, true);
+        this.player4.animations.add('left', [4, 3, 5], 8, true);
+        this.player4.animations.add('up', [7, 6, 8], 8, true);
+        this.player4.animations.add('down', [10, 9, 11], 8, true);
         
-        
-        this.player5 = game.add.sprite(game.world.centerX + 300, game.world.centerY + 100, 'player');
+        this.player5 = game.add.sprite(game.world.centerX + 300, game.world.centerY + 100, 'player1');
 		this.game.physics.arcade.enable(this.player5); 
 		this.player5.anchor.setTo(0.5, 0.5);
 		this.player5.body.gravity.y = 0;	
         this.player5.body.collideWorldBounds = true;
+        this.player5.animations.add('right', [1, 0, 2], 8, true);
+        this.player5.animations.add('left', [4, 3, 5], 8, true);
+        this.player5.animations.add('up', [7, 6, 8], 8, true);
+        this.player5.animations.add('down', [10, 9, 11], 8, true);
         
-        this.player6 = game.add.sprite(game.world.centerX + 300, game.world.centerY - 100, 'player');
+        this.player6 = game.add.sprite(game.world.centerX + 300, game.world.centerY - 100, 'player1');
 		this.game.physics.arcade.enable(this.player6); 
 		this.player6.anchor.setTo(0.5, 0.5);
 		this.player6.body.gravity.y = 0;	
         this.player6.body.collideWorldBounds = true;
+        this.player6.animations.add('right', [1, 0, 2], 8, true);
+        this.player6.animations.add('left', [4, 3, 5], 8, true);
+        this.player6.animations.add('up', [7, 6, 8], 8, true);
+        this.player6.animations.add('down', [10, 9, 11], 8, true);
         //insercion de jugadores en una array para poder cambiar el jugador
         this.equip2 = [this.player4, this.player5, this.player6];
         
@@ -73,8 +96,7 @@ var playState = {
         this.contadorB=j;
         this.equip1[this.contadorA];
         this.equip2[this.contadorB];
-        this.tiempo=500;
-       
+        this.tiempo=500;  
 	},
 
 	update: function() {
@@ -102,14 +124,18 @@ var playState = {
         if (this.cursor.left.isDown)
         {
             this.equip1[this.contadorA].body.velocity.x -= 100;
+            this.equip1[this.contadorA].animations.play('left');
         } else if (this.cursor.right.isDown) {
-            this.equip1[this.contadorA].body.velocity.x += 100;
+            this.equip1[this.contadorA].body.velocity.x += 100;     
+            this.equip1[this.contadorA].animations.play('right');
         }
         if (this.cursor.up.isDown)
         {
             this.equip1[this.contadorA].body.velocity.y -= 100;
+            this.equip1[this.contadorA].animations.play('up');
         } else if (this.cursor.down.isDown) {
             this.equip1[this.contadorA].body.velocity.y += 100;
+            this.equip1[this.contadorA].animations.play('down');
         }    
         if(this.cambiarEquip1.isDown) {
             if(game.time.now > this.tiempo) {
@@ -126,14 +152,18 @@ var playState = {
         if (this.wasd.left.isDown)
         {
             this.equip2[this.contadorB].body.velocity.x -= 100;
+            this.equip2[this.contadorB].animations.play('right');
         } else if (this.wasd.right.isDown) {
-            this.equip2[this.contadorB].body.velocity.x += 100;
+            this.equip2[this.contadorB].body.velocity.x += 100;  
+            this.equip2[this.contadorB].animations.play('left');
         }
         if (this.wasd.up.isDown)
         {
             this.equip2[this.contadorB].body.velocity.y -= 100;
+            this.equip2[this.contadorB].animations.play('up');
         } else if (this.wasd.down.isDown) {
             this.equip2[this.contadorB].body.velocity.y += 100;
+            this.equip2[this.contadorB].animations.play('down');
         }    
         if(this.wasd.change.isDown) {
             if(game.time.now > this.tiempo) {
