@@ -2,8 +2,6 @@
 var game = new Phaser.Game(800, 400, Phaser.AUTO, 'gameDiv');
 
 game.global = {
-    //puntuacion
-	score: 0
 };
 //añadimos todos los estados
 game.state.add('boot', bootState);

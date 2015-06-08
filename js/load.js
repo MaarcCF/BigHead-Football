@@ -13,11 +13,10 @@ var loadState = {
         //cargamos los sprites necesarios, jugador, background, el boton mutear, etc
 		game.load.spritesheet('player1', 'assets/player1.png', 25, 36);
         game.load.spritesheet('player2', 'assets/player2.png', 25, 36);
+        game.load.spritesheet('porteria1', 'assets/porteria.png', 113, 177);
+        game.load.spritesheet('porteria2', 'assets/porteria2.png', 113, 177);
         game.load.spritesheet('ball', 'assets/pelota.png', 20, 20);
 		game.load.image('background', 'assets/campoFutbol.jpg');
-		game.load.spritesheet('mute', 'assets/muteButton.png', 28, 22);
-        game.load.image('wallV', 'assets/wallVertical.png');
-		game.load.image('wallH', 'assets/wallHorizontal.png');
         
         //cargamos los tilesets del mapa y el propio mapa
 		this.load.image('tileset', 'assets/tileset.png'); 
