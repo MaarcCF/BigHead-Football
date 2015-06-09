@@ -121,6 +121,11 @@ var playState = {
         this.equip2[this.contadorB];
         this.tiempo=500;
         this.tiempo2=500;
+        
+        this.sonidoAmbiente = game.add.audio('ambiente');
+        this.sonidoAmbiente.play();
+        this.sonidoGol = game.add.audio('gol');
+        this.sonidoFinal = game.add.audio('final');
 	},
 
 	update: function() {
@@ -205,6 +210,7 @@ var playState = {
             if(game.time.now > this.tiempo) {
                 this.tiempo=game.time.now+500;
                 game.global.score1 += 1;
+                this.sonidoGol.play();
                 this.scoreLabel1.text = 'White team: ' + game.global.score1;
                 this.ball.body.position.x = 390;
                 this.ball.body.position.y = 190;
@@ -246,6 +252,7 @@ var playState = {
             if(game.time.now > this.tiempo) {
                 this.tiempo=game.time.now+500;
                 game.global.score2 += 1;
+                this.sonidoGol.play();
                 this.scoreLabel2.text = 'Yellow team: ' + game.global.score2;
                 this.ball.body.position.x = 390;
                 this.ball.body.position.y = 190;
@@ -295,6 +302,7 @@ var playState = {
         
         //para controlar cuando termina el tiempo y comparar quien ha ganado el partido
         if(this.time === 0) {
+            this.sonidoFinal.play();
             this.finishLabel = game.add.text(game.world.centerX-50, game.world.centerY-100, 'Game over', { font: '18px Arial', fill: '#ffffff' });
             if(game.global.score1 > game.global.score2) {
                 this.whiteTeam = game.add.text(game.world.centerX-50, game.world.centerY, 'White team WIN!', { font: '18px Arial', fill: '#ffffff' });
