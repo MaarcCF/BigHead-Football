@@ -1,13 +1,16 @@
 var menuState = {
 
 	create: function() { 
+        //añadimos un background para los controles
+        game.add.tileSprite(0, 0, 1000, 600, 'background2');
+        
         //titulo del juego en la pantalla de inicio
-		var nameLabel = game.add.text(game.world.centerX, game.world.height - 250, 'BigHead Football', { font: '70px Armageda', fill: '#ffffff' });
+		var nameLabel = game.add.text(game.world.centerX, game.world.height - 350, 'BigHead Football', { font: '70px Armageda', fill: '#ffffff' });
 		nameLabel.anchor.setTo(0.5, 0.5);
 
         //añadir el texto para que el usuario apriete el boton correcto para empezar a jugar
 	    var text = 'press the up arrow key to start';
-		var startLabel = game.add.text(game.world.centerX, game.world.height-80, text, { font: '25px verdana', fill: '#ffffff' });
+		var startLabel = game.add.text(game.world.centerX, game.world.height-50, text, { font: '25px verdana', fill: '#ffffff' });
 		startLabel.anchor.setTo(0.5, 0.5);
 
 		game.add.tween(startLabel).to({angle: -2}, 500).to({angle:2}, 500).loop().start(); 

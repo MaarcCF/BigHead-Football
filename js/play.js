@@ -1,6 +1,7 @@
 var playState = {
 
 	create: function() { 
+        //https://github.com/MaarcCF/BigHead-Football
         //añadir el background del juego(fondo)
         game.add.image(0, 0, 'background');
         //añadir el funcionamiento de las teclas

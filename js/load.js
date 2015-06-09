@@ -18,6 +18,7 @@ var loadState = {
         game.load.spritesheet('ball', 'assets/pelota.png', 20, 20);
         game.load.spritesheet('mute', 'assets/muteButton.png', 28, 22);
 		game.load.image('background', 'assets/campoFutbol.jpg');
+        game.load.image('background2', 'assets/backgroundControles.jpg');
         
         //cargamos los tilesets del mapa y el propio mapa
 		this.load.image('tileset', 'assets/tileset.png'); 
